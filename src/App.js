@@ -19,6 +19,21 @@ function App() {
     <div className="App-header">
       <h1>TODOリスト</h1>
 
+      <form>
+        <label>
+          <input type="radio" id="all-Todo" name="Todo" checked />
+          全て
+        </label>
+        <label>
+          <input type="radio" id="incomplete-Todo" name="Todo" />
+          作業中
+        </label>
+        <label>
+          <input type="radio" id="complete-Todo" name="Todo" />
+          完了
+        </label>
+      </form>
+
       <table>
         <thead>
           <tr>
