@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function App() {
   const [inputTodo, setInputTodo] = useState("");
-  const [incompleteTodos, setIncompleteTodos] = useState(["test1", "test2"]);
+  const [incompleteTodos, setIncompleteTodos] = useState([""]);
 
   const onChangeInputTodo = (e) => {
     setInputTodo(e.target.value);
