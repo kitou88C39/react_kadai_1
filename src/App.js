@@ -1,8 +1,9 @@
 import { useState } from "react";
+import "./styles.css";
 
 function App() {
   const [inputTodo, setInputTodo] = useState("");
-  const [incompleteTodos, setIncompleteTodos] = useState([""]);
+  const [incompleteTodos, setIncompleteTodos] = useState([]);
 
   const onChangeInputTodo = (e) => {
     setInputTodo(e.target.value);
@@ -53,7 +54,7 @@ function App() {
         <ol>
           {incompleteTodos.map((todo) => {
             return (
-              <div key={todo}>
+              <div className="list-row" key={todo}>
                 <li>{todo}</li>
                 <button>作業中</button>
                 <button>削除</button>
