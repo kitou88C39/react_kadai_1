@@ -43,28 +43,35 @@ function App() {
             <th>状態</th>
           </tr>
         </thead>
-        <tbody>
+        {/* <tbody>
           <tr>
-            <td>番号</td>
-            <td>やることやることやることやることやることやること</td>
+            <td text="todo.id"></td>
+            <td text="todo.comment"></td>
             <td>ボタン</td>
           </tr>
+        </tbody> */}
+        <tbody>
+          <div>
+            <ol>
+              {incompleteTodos.map((todo) => {
+                return (
+                  <div className="list-row" key={todo}>
+                    <tr>
+                      <td>
+                        <li>{todo}</li>
+                      </td>
+                      <td>
+                        <button>作業中</button>
+                        <button>削除</button>
+                      </td>
+                    </tr>
+                  </div>
+                );
+              })}
+            </ol>
+          </div>
         </tbody>
       </table>
-
-      <div>
-        <ol>
-          {incompleteTodos.map((todo) => {
-            return (
-              <div className="list-row" key={todo}>
-                <li>{todo}</li>
-                <button>作業中</button>
-                <button>削除</button>
-              </div>
-            );
-          })}
-        </ol>
-      </div>
 
       <div>
         <h2>新規タスクの追加</h2>
