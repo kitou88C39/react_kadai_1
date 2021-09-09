@@ -35,34 +35,37 @@ function App() {
         </label>
       </form>
 
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>コメント</th>
-          <th>状態</th>
-        </tr>
-      </thead>
-      <tbody id="list">
-        <tr>
-          <td></td>
-        </tr>
-      </tbody>
-
       <table>
-        <div>
-          <ol>
-            {incompleteTodos.map((todo) => {
-              return (
-                <div className="list-row" key={todo}>
-                  <li>{todo}</li>
-                  <button>作業中</button>
-                  <button>削除</button>
-                </div>
-              );
-            })}
-          </ol>
-        </div>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>コメント</th>
+            <th>状態</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>番号</td>
+            <td>やることやることやることやることやることやること</td>
+            <td>ボタン</td>
+          </tr>
+        </tbody>
       </table>
+
+      <div>
+        <ol>
+          {incompleteTodos.map((todo) => {
+            return (
+              <div className="list-row" key={todo}>
+                <li>{todo}</li>
+                <button>作業中</button>
+                <button>削除</button>
+              </div>
+            );
+          })}
+        </ol>
+      </div>
+
       <div>
         <h2>新規タスクの追加</h2>
         <input placeholder="Enter a new TODO" value={inputTodo} onChange={onChangeInputTodo} />
