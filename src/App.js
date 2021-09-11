@@ -33,7 +33,7 @@ function App() {
 
       <form>
         <label>
-          <input type="radio" id="all-Todo" name="Todo" checked />
+          <input type="radio" id="all-Todo" name="Todo" defaultChecked />
           全て
         </label>
         <label>
@@ -72,7 +72,7 @@ function App() {
 
       <div>
         <h2>新規タスクの追加</h2>
-        <input placeholder="Enter a new TODO" value={todos} onChange={onChangeTodo} />
+        <input placeholder="Enter a new TODO" value={comment} onChange={onChangeTodo} />
         <button onClick={addTodo}>追加</button>
       </div>
     </div>
