@@ -23,7 +23,7 @@ function App() {
     setComment("");
   };
   const onClickDelete = (index) => {
-    const newTodos = [...comment];
+    const newTodos = [...todos];
     newTodos.splice(index, 1);
     setTodos(newTodos);
   };
