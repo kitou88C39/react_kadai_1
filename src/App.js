@@ -26,6 +26,7 @@ function App() {
     const newTodos = [...todos];
     newTodos.splice(index, 1);
     setTodos(newTodos);
+    setTodos(newTodos.map((e, i) => ({ ...e, id: i + 1 })));
   };
 
   return (
