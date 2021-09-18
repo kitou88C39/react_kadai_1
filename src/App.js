@@ -1,8 +1,6 @@
 import { useState } from "react";
-
 //入力用 todos
 //未完了のTodo用 comment
-
 function App() {
   const [todos, setTodos] = useState([]);
   const [comment, setComment] = useState("");
@@ -22,11 +20,14 @@ function App() {
     setTodos([...todos, todo]);
     setComment("");
   };
-  const onClickDelete = (index) => {
+  const handleDelete = (index) => {
     const newTodos = [...todos];
     newTodos.splice(index, 1);
     setTodos(newTodos);
     setTodos(newTodos.map((e, i) => ({ ...e, id: i + 1 })));
+  };
+  const toggle = () => {
+    setComment((prevState) => !prevState);
   };
 
   return (
@@ -63,8 +64,8 @@ function App() {
                 <td>{todo.id}</td>
                 <td>{todo.comment}</td>
                 <td>
-                  <button>作業中</button>
-                  <button onClick={() => onClickDelete(index)}>削除</button>
+                  <button onClick={toggle}>{comment ? "作業中" : "完了"}</button>
+                  <button onClick={() => handleDelete(index)}>削除</button>
                 </td>
               </tr>
             );
