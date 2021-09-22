@@ -26,8 +26,17 @@ function App() {
     setTodos(newTodos);
     setTodos(newTodos.map((e, i) => ({ ...e, id: i + 1 })));
   };
-  const toggle = () => {
-    setComment((prevState) => !prevState);
+  const toggle = (todoId) => {
+    setTodos(
+      todos.map((todo, i) =>
+        todoId === todo.id
+          ? {
+              ...todo,
+              status: todo.status === "incomplete" ? "completed" : "incomplete",
+            }
+          : todo
+      )
+    );
   };
 
   return (
@@ -64,7 +73,7 @@ function App() {
                 <td>{todo.id}</td>
                 <td>{todo.comment}</td>
                 <td>
-                  <button onClick={toggle}>{comment ? "作業中" : "完了"}</button>
+                  <button onClick={() => toggle(todo.id)}>{todo.status === "incomplete" ? "作業中" : "完了"}</button>
                   <button onClick={() => handleDelete(index)}>削除</button>
                 </td>
               </tr>
