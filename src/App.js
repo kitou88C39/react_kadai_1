@@ -39,11 +39,11 @@ function App() {
   };
 
   const switchTodos = () => {
-    if (radio === "complete") {
-      return todos.filter((todo) => todo.complete);
+    if (radio === "completed") {
+      return todos.filter((todo) => todo.status === "completed");
     }
     if (radio === "incomplete") {
-      return todos.filter((todo) => !todo.complete);
+      return todos.filter((todo) => todo.status === "incomplete");
     }
     return todos;
   };
