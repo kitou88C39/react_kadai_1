@@ -1,13 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
+
 //入力用 todos
 //未完了のTodo用 comment
+
 function App() {
   const [todos, setTodos] = useState([]);
   const [comment, setComment] = useState("");
-
-  const onChangeTodo = (e) => {
-    setComment(e.target.value);
-  };
+  const [radio, setRadio] = useState("all");
 
   const addTodo = () => {
     if (comment === "") return;
@@ -20,7 +19,7 @@ function App() {
     setTodos([...todos, todo]);
     setComment("");
   };
-  const handleDelete = (index) => {
+  const onClickDelete = (index) => {
     const newTodos = [...todos];
     newTodos.splice(index, 1);
     setTodos(newTodos);
@@ -32,11 +31,21 @@ function App() {
         todoId === todo.id
           ? {
               ...todo,
-              status: todo.status === "incomplete" ? "completed" : "incomplete",
+              status: todo.status === "incomplete" ? "completed" : "incomplete", // completed は「完了」を表す
             }
           : todo
       )
     );
+  };
+
+  const switchTodos = () => {
+    if (radio === "complete") {
+      return todos.filter((todo) => todo.complete);
+    }
+    if (radio === "incomplete") {
+      return todos.filter((todo) => !todo.complete);
+    }
+    return todos;
   };
 
   return (
@@ -45,15 +54,25 @@ function App() {
 
       <form>
         <label>
-          <input type="radio" id="all-Todo" name="Todo" defaultChecked />
+          <input type="radio" value="all" onChange={(e) => setRadio(e.target.value)} checked={radio === "all"} />
           全て
         </label>
         <label>
-          <input type="radio" id="incomplete-Todo" name="Todo" />
+          <input
+            type="radio"
+            value="incomplete"
+            onChange={(e) => setRadio(e.target.value)}
+            checked={radio === "incomplete"}
+          />
           作業中
         </label>
         <label>
-          <input type="radio" id="complete-Todo" name="Todo" />
+          <input
+            type="radio"
+            value="completed"
+            onChange={(e) => setRadio(e.target.value)}
+            checked={radio === "completed"}
+          />
           完了
         </label>
       </form>
@@ -67,14 +86,14 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {todos.map((todo, index) => {
+          {switchTodos().map((todo, index) => {
             return (
               <tr key={todo.id}>
                 <td>{todo.id}</td>
                 <td>{todo.comment}</td>
                 <td>
                   <button onClick={() => toggle(todo.id)}>{todo.status === "incomplete" ? "作業中" : "完了"}</button>
-                  <button onClick={() => handleDelete(index)}>削除</button>
+                  <button onClick={() => onClickDelete(index)}>削除</button>
                 </td>
               </tr>
             );
@@ -84,7 +103,8 @@ function App() {
 
       <div>
         <h2>新規タスクの追加</h2>
-        <input placeholder="Enter a new TODO" value={comment} onChange={onChangeTodo} />
+
+        <input placeholder="Enter a new TODO" value={comment} onChange={(e) => setComment(e.target.value)} />
         <button onClick={addTodo}>追加</button>
       </div>
     </div>
